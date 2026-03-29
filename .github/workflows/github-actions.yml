@@ -20,7 +20,7 @@ jobs:
           - name: Disable Wget SSL Verification
             run: echo "check_certificate = off" >> ~/.wgetrc
           - name: Pre-download zlib to correct folder
-            run:|
+            run: |
                   # Criar diretório onde o Buildroot procura tarballs
                   mkdir -p buildroot/dl
 
