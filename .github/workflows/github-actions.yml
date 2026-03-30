@@ -26,7 +26,7 @@ jobs:
           - name: Pre-download zlib to correct folder
             run: |
                   # Criar diretório onde o Buildroot procura tarballs
-                  mkdir -p buildroot/dl
+                  sudo mkdir -p /home/autotest-admin/.dl
 
                   # Fazer download ignorando certificados SSL
                   wget --no-check-certificate \
