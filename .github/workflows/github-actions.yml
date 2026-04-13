@@ -13,16 +13,10 @@ jobs:
         steps:
           - uses: actions/checkout@v2
           - name: Checkout submodules
-            run: git -c http.sslVerify=false submodule update --init --recursive
+            run: git -c submodule update --init --recursive
           - uses: webfactory/ssh-agent@v0.5.3
             with:
                 ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          - name: Install Cisco certificate for Docker
-            run: |
-                  echo "Installing Cisco Root CA into runner trust store"
-                  sudo mkdir -p /usr/local/share/ca-certificates/cisco
-                  echo "${{ secrets.CISCO_CA_CERT }}" | sudo tee /usr/local/share/ca-certificates/cisco/cisco.crt > /dev/null
-                  sudo update-ca-certificates
           - name: Run full test
             env:
               GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
